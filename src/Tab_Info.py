@@ -1,3 +1,4 @@
+import Input_File as a
 import Tab_Frekuensi as b
 
 def similiarity(d):
@@ -25,4 +26,9 @@ def kalidot(d):
 Tab_Sim=[0 for i in range(10)]
 for i in range(10):
     Tab_Sim[i]=similiarity(i+1)
+
+#memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata
+Tab_countKata = [0 for i in range(10)]
+for i in range(10):
+    Tab_countKata[i]=len(a.d[i].split())
 
