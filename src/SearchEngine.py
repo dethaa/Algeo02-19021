@@ -9,7 +9,7 @@ import Tab_Info as TI
 
 print("################################## MY SIMPLE SEARCH ENGINE ##################################")
 print("Hasil Pencarian:")
-for jumlahDoc in range (10):
+for jumlahDoc in range (15):
 	print(jumlahDoc+1)
 	print("Jumlah kata: ", TI.Tab_countKata[jumlahDoc])
 	print("Tingkat Kemiripan: ", TI.Tab_Sim[jumlahDoc])
