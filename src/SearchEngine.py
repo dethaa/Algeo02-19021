@@ -9,13 +9,29 @@ f = open('iniAsumsiInputUsernya.txt','r')
 inputan = f.read()
 stop = stopword.remove(inputan)
 outputInput = stemmer.stem(stop)
+
+#buatDokumen
+f = open('dokumen.txt', 'r')
+dokumen = f.read()
+stopWDokumen = stopword.remove(dokumen)
+outputDokumen = stemmer.stem(stopWDokumen)
+X = outputDokumen.split()
+strDok = list(X)
+print(strDok)
+print(len(strDok))
+
+#buat Input sementara
+
 kata_Unik = set(outputInput.split())
 strs = list(kata_Unik)
 nTerm = len(strs)
-print(strs[0])
+
 terms = ['*' for i in range(nTerm)]
-matriksQDoc = [[0 for j in range(15)] for i in range(nTerm)]
-for row in range (nTerm):
-	terms[row] = strs[row]
-print(terms)
+iTerms = 0
+queryDocs = [[0 for j in range(17)] for i in range(nTerm)]
+for row in range (17):
+	for column in range (nTerm):
+		
+print(iTerms)
+
 f.close()
