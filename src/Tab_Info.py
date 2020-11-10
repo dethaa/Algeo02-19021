@@ -27,7 +27,15 @@ Tab_Sim=[0 for i in range(15)]
 for i in range(15):
     Tab_Sim[i]=similiarity(i+1)
 
+#mereturn indeks dari pengurutan tabel similarity
+P = sorted(range(len(Tab_Sim)),key=lambda x:Tab_Sim[x],reverse=True)
+Index_SortedSim = sorted(range(len(Tab_Sim)),key=lambda x:P[x])
+
+#mengurutkan nilai similiarity dengan memasukkan hasil Tab_Sim ke array sementara
+Tab_Sim.sort(reverse = True)
+
 #memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata
 Tab_countKata = [0 for i in range(15)]
 for i in range(15):
-    Tab_countKata[i]=len(a.d[i].split())
+    idx = Index_SortedSim[i]
+    Tab_countKata[i]=len(a.d[idx].split())

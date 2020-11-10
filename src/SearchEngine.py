@@ -1,37 +1,18 @@
+# FILE MAIN
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
-#Input file
-factory1 = StopWordRemoverFactory()
-stopword = factory1.create_stop_word_remover()
-factory2 = StemmerFactory()
-stemmer = factory2.create_stemmer()
-f = open('iniAsumsiInputUsernya.txt','r')
-inputan = f.read()
-stop = stopword.remove(inputan)
-outputInput = stemmer.stem(stop)
 
-#buatDokumen
-f = open('dokumen.txt', 'r')
-dokumen = f.read()
-stopWDokumen = stopword.remove(dokumen)
-outputDokumen = stemmer.stem(stopWDokumen)
-X = outputDokumen.split()
-strDok = list(X)
-print(strDok)
-print(len(strDok))
+import Input_File as IF
+import Tab_Frekuensi as TF 
+import Tab_Info as TI
 
-#buat Input sementara
 
-kata_Unik = set(outputInput.split())
-strs = list(kata_Unik)
-nTerm = len(strs)
-
-terms = ['*' for i in range(nTerm)]
-iTerms = 0
-queryDocs = [[0 for j in range(17)] for i in range(nTerm)]
-for row in range (17):
-	for column in range (nTerm):
-		
-print(iTerms)
-
-f.close()
+print("################################## MY SIMPLE SEARCH ENGINE ##################################")
+print("Hasil Pencarian:")
+for jumlahDoc in range (10):
+	print(jumlahDoc+1)
+	print("Jumlah kata: ", TI.Tab_countKata[jumlahDoc])
+	print("Tingkat Kemiripan: ", TI.Tab_Sim[jumlahDoc])
+	print("<Kalimat pertama dari Dokumen ", TI.Index_SortedSim[jumlahDoc], " >")
+#print Tabel Frekuensi mentah
+print(TF.tab_frek)
