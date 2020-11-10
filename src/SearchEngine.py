@@ -5,21 +5,17 @@ factory1 = StopWordRemoverFactory()
 stopword = factory1.create_stop_word_remover()
 factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
-f = open('dokumen.txt','r')
-dokumen = f.read()
-stop = stopword.remove(dokumen)
-output = stemmer.stem(stop)
-print(output)
-# di sini algoritma (countKataQuery - KataQueryYangSama), hasilnya a misalnya 
-setOutput = set(output)
-nTerm = len(setOutput)
-print(nTerm)
-#tab_Frek
-#a = jumlahQuery
-#terms  [][]
-#query = [][]
-if (nTerm!=0):
-	for i in range(nTerm):
-		for j in range (17):  # asumsi saat ini tabel ada 15 + 1 tabel query
-			print(outputs.split()[i])
+f = open('iniAsumsiInputUsernya.txt','r')
+inputan = f.read()
+stop = stopword.remove(inputan)
+outputInput = stemmer.stem(stop)
+kata_Unik = set(outputInput.split())
+strs = list(kata_Unik)
+nTerm = len(strs)
+print(strs[0])
+terms = ['*' for i in range(nTerm)]
+matriksQDoc = [[0 for j in range(15)] for i in range(nTerm)]
+for row in range (nTerm):
+	terms[row] = strs[row]
+print(terms)
 f.close()
