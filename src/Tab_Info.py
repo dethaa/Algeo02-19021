@@ -23,12 +23,11 @@ def kalidot(d):
     return(sum)
 
 #memasukkan nilai similiarity dokumen dengan query ke dalam array Tab_Sim
-Tab_Sim=[0 for i in range(10)]
-for i in range(10):
+Tab_Sim=[0 for i in range(15)]
+for i in range(15):
     Tab_Sim[i]=similiarity(i+1)
 
 #memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata
-Tab_countKata = [0 for i in range(10)]
-for i in range(10):
+Tab_countKata = [0 for i in range(15)]
+for i in range(15):
     Tab_countKata[i]=len(a.d[i].split())
-

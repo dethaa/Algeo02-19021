@@ -9,21 +9,44 @@ factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
 
 #menginput file
-f1 = open('d1.txt', 'r')
-f2 = open('d2.txt', 'r')
-f3 = open('d3.txt', 'r')
-f4 = open('d4.txt', 'r')
-f5 = open('d5.txt', 'r')
-f6 = open('d6.txt', 'r')
-f7 = open('d7.txt', 'r')
-f8 = open('d8.txt', 'r')
-f9 = open('d9.txt', 'r')
-f10 = open('d10.txt', 'r')
+f1 = open('d1.txt', 'r', encoding='utf-8')
+f2 = open('d2.txt', 'r', encoding='utf-8')
+f3 = open('d3.txt', 'r', encoding='utf-8')
+f4 = open('d4.txt', 'r', encoding='utf-8')
+f5 = open('d5.txt', 'r', encoding='utf-8')
+f6 = open('d6.txt', 'r', encoding='utf-8')
+f7 = open('d7.txt', 'r', encoding='utf-8')
+f8 = open('d8.txt', 'r', encoding='utf-8')
+f9 = open('d9.txt', 'r', encoding='utf-8')
+f10 = open('d10.txt', 'r', encoding='utf-8')
+f11 = open('d11.txt', 'r', encoding='utf-8')
+f12 = open('d12.txt', 'r', encoding='utf-8')
+f13 = open('d13.txt', 'r', encoding='utf-8')
+f14 = open('d14.txt', 'r', encoding='utf-8')
+f15 = open('d15.txt', 'r', encoding='utf-8')
 
 #deklarasi array
-d = ['*' for i in range(10)] #menyimpan dokumen asli
-stop = ['*' for i in range(10)] #menyimpan hasil penghapusan stopword
-clean =['*' for i in range(11)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
+judul = ['*' for i in range(15)]
+d = ['*' for i in range(15)] #menyimpan dokumen asli
+stop = ['*' for i in range(15)] #menyimpan hasil penghapusan stopword
+clean =['*' for i in range(16)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
+
+#menyimpan judul dokumen ke dalam array judul
+judul[0] = 'Satu Hikmah Terpenting yang Bisa Kita Ambil dari Pandemi Covid-19'
+judul[1] = 'Tiga Hal yang Bisa Kamu Lakukan Saat Social Distancing'
+judul[2] = 'Tujuh Hal yang Bisa Dilakukan Brand Lewat Konten di Saat Krisis Covid-19'
+judul[3] = 'Analisis Pola Komunikasi Masyarakat di Twitter selama Pandemi COVID-19'
+judul[4] = 'Bagaimana Adaptasi Pelajar dan Para Pengajar di Masa Pandemi Covid-19'
+judul[5] = 'COVID-19: Kita Dalam Bahaya'
+judul[6] = 'Dampak Pandemi COVID-19 Pada Berbagai Sektor Bisnis'
+judul[7] = 'Dampak Pandemi COVID-19: Perjuangan Pendidikan Indonesia'
+judul[8] = 'Dampak Platform Digital dan Perannya Selama Pandemi COVID-19 pada Pemasaran Produk di Indonesia'
+judul[9] = 'Pandemi Covid-19: Tanggap Darurat Dunia Kesehatan Global'
+judul[10] = 'Pangan di Tengah Pandemi Covid-19'
+judul[11] = 'Pembelajaran Jarak Jauh; Peran dan Hikmah Teknologi bagi Masyarakat Pembelajar di Era Pandemi COVID-19'
+judul[12] = 'Pendidikan Indonesia di Tengah Pandemi Covid-19'
+judul[13] = 'Perubahan Perilaku Belanja Konsumen Indonesia Saat Covid-19'
+judul[14] = 'Solusi Untuk Medapatkan Penghasilan Tambahan Selama Pandemi Covid-19'
 
 #menyimpan pembacaan dokumen ke dalam array d
 d[0] = f1.read()
@@ -36,9 +59,14 @@ d[6] = f7.read()
 d[7] = f8.read()
 d[8] = f9.read()
 d[9] = f10.read()
+d[10] = f11.read()
+d[11] = f12.read()
+d[12] = f13.read()
+d[13] = f14.read()
+d[14] = f15.read()
 
 #traversal untuk "pembersihan" dokumen
-for i in range(10):
+for i in range(15):
     stop[i] = stopword.remove(d[i])
     clean[i+1] = stemmer.stem(stop[i])
 
@@ -53,3 +81,8 @@ f7.close()
 f8.close()
 f9.close()
 f10.close()
+f11.close()
+f12.close()
+f13.close()
+f14.close()
+f15.close()

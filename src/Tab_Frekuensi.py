@@ -22,8 +22,8 @@ terms = list(set(a.clean[0].split()))
 nTerm = len(terms)
 
 #membuat tabel frekuensi kemunculan kata pada dokumen dan query yang sesuai dengan terms
-tab_frek = [[0 for j in range(11)] for i in range(nTerm)]
-for i in range(11):
+tab_frek = [[0 for j in range(16)] for i in range(nTerm)]
+for i in range(16):
 	for j in range(nTerm):
 		for k in range(len(a.clean[i].split())):
 			if ((a.clean[i].split()[k])==terms[j]):
