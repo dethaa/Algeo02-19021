@@ -7,7 +7,16 @@
 {% block body %}
 <div class="content" style="max-width:2000px;margin-top:65px">
     <h1 style="text-align: center">Daftar Dokumen</h1>
-
+    
+    <p>
+        {% with messages = get_flashed_messages() %}
+         {% for message in messages %}
+           <div class="content" style="margin-left: 13px;padding-top: 10px;">
+            <strong>{{ message }}</strong>
+          </div>
+         {% endfor %}
+         {% endwith %}
+    </p>
    
 </div>
 {% endblock %}

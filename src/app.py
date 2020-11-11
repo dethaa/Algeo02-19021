@@ -1,8 +1,12 @@
-from flask import Flask, render_template, flash, request, redirect
+from flask import Flask, render_template, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 
 import urllib.request
+
+import Input_File as a
+import Tab_Info as TI
+import Tab_Frekuensi as TF
 
 app = Flask(__name__)
 
@@ -21,12 +25,32 @@ def allowed_file(filename):
 def index():
     return render_template('index.html')
 
+@app.route('/', methods=['POST','GET'])
+def search():
+    if request.method == 'POST':
+        user = request.form['query']
+    else :
+        user = request.args.get('query')
+    return redirect(url_for("search_query", que=user))
+
+@app.route('/<que>')
+def search_query(que):
+    for i in range(15):
+        flash(str(i + 1)+ '. '+ TI.Tab_sortedJudul[i])
+        flash('Jumlah kata: '+ str(TI.Tab_countKata[i]))
+        flash('Tingkat Kemiripan: '+ str(round(TI.Tab_Sim[i]*100))+ '%')
+        flash(TI.Tab_FirstSent[i])
+        flash('')
+    return render_template('index.html')
+
 @app.route('/perihal')
 def perihal():
     return render_template('perihal.html')
 
 @app.route("/daftar-dokumen")
 def daftar():
+    for i in range(15):
+        flash(str(i+1)+'. '+a.judul[i])
     return render_template("daftar.html")
 
 @app.route("/unggah")
@@ -46,7 +70,7 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File berhasil diunggah')
-    return redirect('/')
+    return redirect('/unggah')
 
 if __name__ == "__main__":
     app.run(debug=True)
