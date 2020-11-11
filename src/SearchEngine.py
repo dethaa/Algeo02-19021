@@ -4,10 +4,10 @@ import Tab_Info as TI
 
 print("################################## MY SIMPLE SEARCH ENGINE ##################################")
 print("Hasil Pencarian:")
-for jumlahDoc in range(15):
-    print(jumlahDoc + 1)
-    print("Jumlah kata: ", TI.Tab_countKata[jumlahDoc])
-    print("Tingkat Kemiripan: ", TI.Tab_Sim[jumlahDoc])
-    print("Kalimat pertama dari Dokumen ", TI.Index_SortedSim[jumlahDoc], " >")
+for i in range(15):
+    print(i + 1, ". ", TI.Tab_sortedJudul[i])
+    print("Jumlah kata: ", TI.Tab_countKata[i])
+    print("Tingkat Kemiripan: ", TI.Tab_Sim[i])
+    print(TI.Tab_FirstSent[i])
 # print Tabel Frekuensi mentah
 print(TF.tab_frek)

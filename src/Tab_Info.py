@@ -34,8 +34,20 @@ Index_SortedSim = sorted(range(len(Tab_Sim)),key=lambda x:P[x])
 #mengurutkan nilai similiarity dengan memasukkan hasil Tab_Sim ke array sementara
 Tab_Sim.sort(reverse = True)
 
-#memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata
+#memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai similarity
 Tab_countKata = [0 for i in range(15)]
 for i in range(15):
     idx = Index_SortedSim[i]
     Tab_countKata[i]=len(a.d[idx].split())
+
+#Mengurutkan isi judul dokumen sesuai similarity
+Tab_sortedJudul = ['*' for i in range(15)]
+for i in range(15):
+    idx = Index_SortedSim[i]
+    Tab_sortedJudul[i] = a.judul[idx]
+
+#Mendapatkan kalimat pertama dari dokumen
+Tab_FirstSent = ['*' for i in range (15)]
+for i in range(15):
+    idx = Index_SortedSim[i]
+    Tab_FirstSent[i] = a.s[idx] 
