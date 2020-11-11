@@ -30,6 +30,7 @@ judul = ['*' for i in range(15)]
 d = ['*' for i in range(15)] #menyimpan dokumen asli
 stop = ['*' for i in range(15)] #menyimpan hasil penghapusan stopword
 clean =['*' for i in range(16)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
+s = ['*' for i in range(15)] #menyimpan kalimat pertama dokumen
 
 #menyimpan judul dokumen ke dalam array judul
 judul[0] = 'Satu Hikmah Terpenting yang Bisa Kita Ambil dari Pandemi Covid-19'
