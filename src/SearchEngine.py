@@ -1,10 +1,11 @@
 # FILE MAIN
 import Tab_Frekuensi as TF
 import Tab_Info as TI
+import Input_File as IF
 
 print("################################## MY SIMPLE SEARCH ENGINE ##################################")
 print("Hasil Pencarian:")
-for i in range(15):
+for i in range(IF.nDok):
     print(i + 1, ". ", TI.Tab_sortedJudul[i])
     print("Jumlah kata: ", TI.Tab_countKata[i])
     print("Tingkat Kemiripan: ", round(TI.Tab_Sim[i]*100), "%")

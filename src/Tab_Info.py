@@ -23,8 +23,8 @@ def kalidot(d):
     return(sum)
 
 #memasukkan nilai similiarity dokumen dengan query ke dalam array Tab_Sim
-Tab_Sim=[0 for i in range(15)]
-for i in range(15):
+Tab_Sim=[0 for i in range(a.nDok)]
+for i in range(a.nDok):
     Tab_Sim[i]=similiarity(i+1)
 
 #mereturn indeks dari pengurutan tabel similarity
@@ -35,19 +35,19 @@ Index_SortedSim = sorted(range(len(Tab_Sim)),key=lambda x:P[x])
 Tab_Sim.sort(reverse = True)
 
 #memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai similarity
-Tab_countKata = [0 for i in range(15)]
-for i in range(15):
+Tab_countKata = [0 for i in range(a.nDok)]
+for i in range(a.nDok):
     idx = Index_SortedSim[i]
     Tab_countKata[i]=len(a.d[idx].split())
 
 #Mengurutkan isi judul dokumen sesuai similarity
-Tab_sortedJudul = ['*' for i in range(15)]
-for i in range(15):
+Tab_sortedJudul = ['*' for i in range(a.nDok)]
+for i in range(a.nDok):
     idx = Index_SortedSim[i]
     Tab_sortedJudul[i] = a.judul[idx]
 
 #Mendapatkan kalimat pertama dari dokumen
-Tab_FirstSent = ['*' for i in range (15)]
-for i in range(15):
+Tab_FirstSent = ['*' for i in range (a.nDok)]
+for i in range(a.nDok):
     idx = Index_SortedSim[i]
     Tab_FirstSent[i] = a.s[idx] 

@@ -8,6 +8,9 @@ stopword = factory1.create_stop_word_remover()
 factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
 
+#fungsi untuk menghitung jumlah dokumen yang ada dalam folder uploads
+nDok = len(os.listdir("uploads/"))
+
 #menginput file
 f1 = open('uploads/d1.txt', 'r', encoding='utf-8')
 f2 = open('uploads/d2.txt', 'r', encoding='utf-8')
@@ -26,11 +29,11 @@ f14 = open('uploads/d14.txt', 'r', encoding='utf-8')
 f15 = open('uploads/d15.txt', 'r', encoding='utf-8')
 
 #deklarasi array
-judul = ['*' for i in range(15)]
-d = ['*' for i in range(15)] #menyimpan dokumen asli
-stop = ['*' for i in range(15)] #menyimpan hasil penghapusan stopword
-clean =['*' for i in range(16)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
-s = ['*' for i in range(15)] #menyimpan kalimat pertama dokumen
+judul = ['*' for i in range(nDok)]
+d = ['*' for i in range(nDok)] #menyimpan dokumen asli
+stop = ['*' for i in range(nDok)] #menyimpan hasil penghapusan stopword
+clean =['*' for i in range(nDok+1)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
+s = ['*' for i in range(nDok)] #menyimpan kalimat pertama dokumen
 
 #menyimpan judul dokumen ke dalam array judul
 judul[0] = 'Satu Hikmah Terpenting yang Bisa Kita Ambil dari Pandemi Covid-19'
@@ -84,7 +87,7 @@ s[13] = d[13].partition('.')[0] + '.'
 s[14] = d[14].partition('.')[0] + '.'
 
 #traversal untuk "pembersihan" dokumen
-for i in range(15):
+for i in range(nDok):
     stop[i] = stopword.remove(d[i])
     clean[i+1] = stemmer.stem(stop[i])
 
