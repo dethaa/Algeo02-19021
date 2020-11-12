@@ -11,10 +11,12 @@ factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
 
 #menginput query melalui keyboard
-query = input("Masukkan query: ")
+def query():
+	masukan = input("Masukkan query: ")
+	return masukan
 
 #membersihkan query dan memasukkannya sebagai elemen pertama array clean
-stop = stopword.remove(query)
+stop = stopword.remove(query())
 a.clean[0] = stemmer.stem(stop)
 
 #memasukkan kata unik pada query ke dalam array terms
