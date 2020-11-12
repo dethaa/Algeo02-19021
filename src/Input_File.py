@@ -1,4 +1,4 @@
-import os
+import os.path
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
@@ -11,64 +11,30 @@ stemmer = factory2.create_stemmer()
 
 #fungsi untuk menghitung jumlah dokumen yang ada dalam folder uploads
 nDok = len(os.listdir("../test/"))
-
-#menginput file
-f1 = open('../test/d1.txt', 'r', encoding='utf-8')
-f2 = open('../test/d2.txt', 'r', encoding='utf-8')
-f3 = open('../test/d3.txt', 'r', encoding='utf-8')
-f4 = open('../test/d4.txt', 'r', encoding='utf-8')
-f5 = open('../test/d5.txt', 'r', encoding='utf-8')
-f6 = open('../test/d6.txt', 'r', encoding='utf-8')
-f7 = open('../test/d7.txt', 'r', encoding='utf-8')
-f8 = open('../test/d8.txt', 'r', encoding='utf-8')
-f9 = open('../test/d9.txt', 'r', encoding='utf-8')
-f10 = open('../test/d10.txt', 'r', encoding='utf-8')
-f11 = open('../test/d11.txt', 'r', encoding='utf-8')
-f12 = open('../test/d12.txt', 'r', encoding='utf-8')
-f13 = open('../test/d13.txt', 'r', encoding='utf-8')
-f14 = open('../test/d14.txt', 'r', encoding='utf-8')
-f15 = open('../test/d15.txt', 'r', encoding='utf-8')
-
+#melist setiap dokumen yang ada di folder test
+file_list = os.listdir("../test/")
 #deklarasi array
-judul = ['*' for i in range(nDok)]
 d = ['*' for i in range(nDok)] #menyimpan dokumen asli
+judul = ['*' for i in range(nDok)] #menyimpan judul dokumen
 stop = ['*' for i in range(nDok)] #menyimpan hasil penghapusan stopword
 clean =['*' for i in range(nDok+1)] #menyimpan hasil pembersihan dokumen (stopword + stemming)
 s = ['*' for i in range(nDok)] #menyimpan kalimat pertama dokumen
 
-#menyimpan judul dokumen ke dalam array judul
-judul[0] = 'Satu Hikmah Terpenting yang Bisa Kita Ambil dari Pandemi Covid-19'
-judul[1] = 'Tiga Hal yang Bisa Kamu Lakukan Saat Social Distancing'
-judul[2] = 'Tujuh Hal yang Bisa Dilakukan Brand Lewat Konten di Saat Krisis Covid-19'
-judul[3] = 'Analisis Pola Komunikasi Masyarakat di Twitter selama Pandemi COVID-19'
-judul[4] = 'Bagaimana Adaptasi Pelajar dan Para Pengajar di Masa Pandemi Covid-19'
-judul[5] = 'COVID-19: Kita Dalam Bahaya'
-judul[6] = 'Dampak Pandemi COVID-19 Pada Berbagai Sektor Bisnis'
-judul[7] = 'Dampak Pandemi COVID-19: Perjuangan Pendidikan Indonesia'
-judul[8] = 'Dampak Platform Digital dan Perannya Selama Pandemi COVID-19 pada Pemasaran Produk di Indonesia'
-judul[9] = 'Pandemi Covid-19: Tanggap Darurat Dunia Kesehatan Global'
-judul[10] = 'Pangan di Tengah Pandemi Covid-19'
-judul[11] = 'Pembelajaran Jarak Jauh; Peran dan Hikmah Teknologi bagi Masyarakat Pembelajar di Era Pandemi COVID-19'
-judul[12] = 'Pendidikan Indonesia di Tengah Pandemi Covid-19'
-judul[13] = 'Perubahan Perilaku Belanja Konsumen Indonesia Saat Covid-19'
-judul[14] = 'Solusi Untuk Medapatkan Penghasilan Tambahan Selama Pandemi Covid-19'
+#menyimpan isi dokumen ke dalam array d
+j=0
+for file in file_list:
+    with open(os.path.join("../test/", file),'r', encoding='utf-8') as src_file:
+        d[j] = src_file.read()
+        j+=1
 
-#menyimpan pembacaan dokumen ke dalam array d
-d[0] = f1.read()
-d[1] = f2.read()
-d[2] = f3.read()
-d[3] = f4.read()
-d[4] = f5.read()
-d[5] = f6.read()
-d[6] = f7.read()
-d[7] = f8.read()
-d[8] = f9.read()
-d[9] = f10.read()
-d[10] = f11.read()
-d[11] = f12.read()
-d[12] = f13.read()
-d[13] = f14.read()
-d[14] = f15.read()
+#menyimpan judul dokumen ke dalam array judul
+for i in range(nDok):
+    judul[i]=(os.path.splitext(file_list[i])[0])
+
+#traversal untuk "pembersihan" dokumen
+for i in range(nDok):
+    stop[i] = stopword.remove(d[i])
+    clean[i+1] = stemmer.stem(stop[i])
 
 #menyimpan kalimat pertama tiap file
 s[0] = d[0].partition('.')[0] + '.'
@@ -86,25 +52,3 @@ s[11] = d[11].partition('.')[0] + '.'
 s[12] = d[12].partition('.')[0] + '.'
 s[13] = d[13].partition('.')[0] + '.'
 s[14] = d[14].partition('.')[0] + '.'
-
-#traversal untuk "pembersihan" dokumen
-for i in range(nDok):
-    stop[i] = stopword.remove(d[i])
-    clean[i+1] = stemmer.stem(stop[i])
-
-#menutup file
-f1.close()
-f2.close()
-f3.close()
-f4.close()
-f5.close()
-f6.close()
-f7.close()
-f8.close()
-f9.close()
-f10.close()
-f11.close()
-f12.close()
-f13.close()
-f14.close()
-f15.close()
