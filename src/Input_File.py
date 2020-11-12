@@ -1,3 +1,4 @@
+import os
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
@@ -9,24 +10,24 @@ factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
 
 #fungsi untuk menghitung jumlah dokumen yang ada dalam folder uploads
-nDok = len(os.listdir("uploads/"))
+nDok = len(os.listdir("../test/"))
 
 #menginput file
-f1 = open('uploads/d1.txt', 'r', encoding='utf-8')
-f2 = open('uploads/d2.txt', 'r', encoding='utf-8')
-f3 = open('uploads/d3.txt', 'r', encoding='utf-8')
-f4 = open('uploads/d4.txt', 'r', encoding='utf-8')
-f5 = open('uploads/d5.txt', 'r', encoding='utf-8')
-f6 = open('uploads/d6.txt', 'r', encoding='utf-8')
-f7 = open('uploads/d7.txt', 'r', encoding='utf-8')
-f8 = open('uploads/d8.txt', 'r', encoding='utf-8')
-f9 = open('uploads/d9.txt', 'r', encoding='utf-8')
-f10 = open('uploads/d10.txt', 'r', encoding='utf-8')
-f11 = open('uploads/d11.txt', 'r', encoding='utf-8')
-f12 = open('uploads/d12.txt', 'r', encoding='utf-8')
-f13 = open('uploads/d13.txt', 'r', encoding='utf-8')
-f14 = open('uploads/d14.txt', 'r', encoding='utf-8')
-f15 = open('uploads/d15.txt', 'r', encoding='utf-8')
+f1 = open('../test/d1.txt', 'r', encoding='utf-8')
+f2 = open('../test/d2.txt', 'r', encoding='utf-8')
+f3 = open('../test/d3.txt', 'r', encoding='utf-8')
+f4 = open('../test/d4.txt', 'r', encoding='utf-8')
+f5 = open('../test/d5.txt', 'r', encoding='utf-8')
+f6 = open('../test/d6.txt', 'r', encoding='utf-8')
+f7 = open('../test/d7.txt', 'r', encoding='utf-8')
+f8 = open('../test/d8.txt', 'r', encoding='utf-8')
+f9 = open('../test/d9.txt', 'r', encoding='utf-8')
+f10 = open('../test/d10.txt', 'r', encoding='utf-8')
+f11 = open('../test/d11.txt', 'r', encoding='utf-8')
+f12 = open('../test/d12.txt', 'r', encoding='utf-8')
+f13 = open('../test/d13.txt', 'r', encoding='utf-8')
+f14 = open('../test/d14.txt', 'r', encoding='utf-8')
+f15 = open('../test/d15.txt', 'r', encoding='utf-8')
 
 #deklarasi array
 judul = ['*' for i in range(nDok)]
