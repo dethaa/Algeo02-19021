@@ -1,22 +1,35 @@
 from flask import Flask, render_template, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
+from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 import os
 
 import urllib.request
 
 import Input_File as a
-import Tab_Info as TI
-import Tab_Frekuensi as TF
+import Tab_Sim as b
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'C:/Users/OMEN/OneDrive/Desktop/Tubes2Algeo/uploads'
+UPLOAD_FOLDER = '../test/'
  
 app.secret_key = "Cairocoders-Ednalan"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['txt', 'html'])
+
+#menyimpan nilai atribut dari Input_File.py
+nDok=a.nDok
+clean=a.clean
+judul=a.judul
+
+#fungsi untuk menghapus stopword dari dokumen
+factory1 = StopWordRemoverFactory()
+stopword = factory1.create_stop_word_remover()
+#fungsi untuk menyederhanakan kata ke bentuk dasar
+factory2 = StemmerFactory()
+stemmer = factory2.create_stemmer()
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -31,27 +44,86 @@ def search():
         user = request.form['query']
     else :
         user = request.args.get('query')
-    return redirect(url_for("search_query", que=user))
+    return redirect(url_for("search_query", query=user))
 
-@app.route('/<que>')
-def search_query(que):
-    for i in range(15):
-        flash(str(i + 1)+ '. '+ TI.Tab_sortedJudul[i])
-        flash('Jumlah kata: '+ str(TI.Tab_countKata[i]))
-        flash('Tingkat Kemiripan: '+ str(round(TI.Tab_Sim[i]*100))+ '%')
-        flash(TI.Tab_FirstSent[i])
-        flash('')
-    return render_template('index.html')
+@app.route('/<query>')
+def search_query(query):
+    flash('Hasil Pencarian :')
+    #membersihkan query dan memasukkannya sebagai elemen pertama array clean
+    stop = stopword.remove(query)
+    clean[0] = stemmer.stem(stop)
+
+    #memasukkan kata unik pada query ke dalam array terms
+    terms = list(set(clean[0].split()))
+    #menyimpan banyaknya jumlah term ke dalam nTerm
+    nTerm = len(terms)
+
+    #membuat tabel frekuensi kemunculan kata pada dokumen dan query yang sesuai dengan term
+    tab_frek = [[0 for j in range(nDok+1)] for i in range(nTerm)]
+    for i in range(nDok+1):
+	    for j in range(nTerm):
+		    for k in range(len(clean[i].split())):
+			    if ((clean[i].split()[k])==terms[j]):
+				    tab_frek[j][i]+=1
+
+    #menyimpan nilai fungsi tab_sim dari Tab_Sim.py
+    tab_sim=b.tab_sim(nTerm,tab_frek,nDok)
+
+    #mereturn indeks dari pengurutan tabel similarity
+    P = sorted(range(len(tab_sim)),key=lambda x:tab_sim[x],reverse=True)
+    Index_SortedSim = sorted(range(len(tab_sim)),key=lambda x:P[x])
+
+    #mengurutkan nilai similiarity dengan memasukkan hasil tab_sim ke array sementara
+    tab_sim.sort(reverse = True)
+
+    #memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai urutan similarity
+    Tab_countKata = [0 for i in range(nDok)]
+    for i in range(nDok):
+        idx = Index_SortedSim[i]
+        Tab_countKata[i]=len(a.d[idx].split())
+
+    #mengurutkan judul dokumen sesuai similarity
+    Tab_sortedJudul = ['*' for i in range(nDok)]
+    for i in range(nDok):
+        idx = Index_SortedSim[i]
+        Tab_sortedJudul[i] = judul[idx]
+
+    #mendapatkan kalimat pertama dari dokumen yang sudah terurut
+    Tab_FirstSent = ['*' for i in range (nDok)]
+    for i in range(nDok):
+        idx = Index_SortedSim[i]
+        Tab_FirstSent[i] = a.s[idx]
+
+    #menyimpan gabungan array judul, Tab_countKata, tab_sim, Tab_FirstSent ke dalam array tab_info
+    tab_info = [['*' for j in range(4)] for i in range(nDok)]
+    for i in range(nDok):
+        tab_info[i][0] = Tab_sortedJudul[i]
+        tab_info[i][1] = Tab_countKata[i]
+        tab_info[i][2] = round(tab_sim[i], 2)
+        tab_info[i][3] = Tab_FirstSent[i]
+
+    #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
+    term_frek = [['*' for j in range(nDok+2)] for i in range(nTerm+1)]
+    term_frek[0][0] = 'Term'
+    term_frek[0][1] = 'Query'
+    for i in range (nDok):
+        term_frek[0][i+2]=judul[i]
+    for i in range (nTerm):
+        term_frek[i+1][0]=terms[i]
+    for i in range(nTerm):
+        for j in range(nDok+1):
+            term_frek[i+1][j+1]=str(tab_frek[i][j])
+
+    return render_template('index.html',data=tab_info)
 
 @app.route('/perihal')
 def perihal():
     return render_template('perihal.html')
 
 @app.route("/daftar-dokumen")
+@app.route("/daftar-dokumen")
 def daftar():
-    for i in range(15):
-        flash(str(i+1)+'. '+a.judul[i])
-    return render_template("daftar.html")
+    return render_template("daftar.html", title=a.judul)
 
 @app.route("/unggah")
 def upload():

@@ -8,19 +8,28 @@
 <div class="content" style="max-width:2000px;margin-top:65px">
     <h1 style="text-align: center">My Simple Search Engine</h1>
 
-    <form action = "/" method ="post">
+    <form action = "/query" method ="POST">
     <div class="search" style="max-width:800px;margin-top:30px;margin-left:350px;">
-        <input type="text" style="text-align: center" class="w3-input w3-border" placeholder="Masukkan pencarian" name ="query">
-    </div>
+        <input type="text" style="text-align: center" class="w3-input w3-border" placeholder="Masukkan pencarian" name= "query" />
+    </div>  
 </form>
-<p>
-    {% with messages = get_flashed_messages() %}
-     {% for message in messages %}
-       <div class="content" style="margin-left: 13px;padding-top: 10px;">
-        <strong>{{ message }}</strong>
-      </div>
-     {% endfor %}
-     {% endwith %}
-</p>
+<div class="content" style="margin-left: 13px;padding-top: 10px;">
+    <strong>{{ message }}</strong>
+  {% for file in data  %}
+        <a href="{{ url_for('daftar') }}" class="content" style=padding-top:10px;>
+          {{file[0]}} </a>
+          <p>
+            Jumlah Kata : {{file[1]}}
+          </p>
+          <p>
+            Tingkat Kemiripan : {{file[2]}}
+          </p>
+          <p style=padding-bottom:10px;>
+            {{file[3]}}
+          </p>
+        
+  </div> 
+    {% endfor %}
+
 </div>
 {% endblock %}
