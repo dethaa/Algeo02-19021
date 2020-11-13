@@ -4,6 +4,11 @@ from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFacto
 import Input_File as a
 import Tab_Info as b
 
+#menyimpan nilai atribut dari Input_File.py
+nDok=a.nDok
+clean=a.clean
+judul=a.judul
+
 #fungsi untuk menghapus stopword dari dokumen
 factory1 = StopWordRemoverFactory()
 stopword = factory1.create_stop_word_remover()
@@ -18,22 +23,21 @@ query = input("Masukkan query: ")
 
 #membersihkan query dan memasukkannya sebagai elemen pertama array clean
 stop = stopword.remove(query)
-a.clean[0] = stemmer.stem(stop)
+clean[0] = stemmer.stem(stop)
 
 #memasukkan kata unik pada query ke dalam array terms
-terms = list(set(a.clean[0].split()))
+terms = list(set(clean[0].split()))
 nTerm = len(terms)
 
 #membuat tabel frekuensi kemunculan kata pada dokumen dan query yang sesuai dengan terms
-tab_frek = [[0 for j in range(a.nDok+1)] for i in range(nTerm)]
-for i in range(a.nDok):
+tab_frek = [[0 for j in range(nDok+1)] for i in range(nTerm)]
+for i in range(nDok+1):
 	for j in range(nTerm):
-		for k in range(len(a.clean[i].split())):
-			if ((a.clean[i].split()[k])==terms[j]):
+		for k in range(len(clean[i].split())):
+			if ((clean[i].split()[k])==terms[j]):
 				tab_frek[j][i]+=1
 
-#memanggil fungsi Tab_Sim pada Tab_Info.py dan memasukkannya nilainya ke dalam variabel Tab_Sim
-nDok=a.nDok
+#menyimpan nilai fungsi Tab_Sim dari Tab_Info.py
 Tab_Sim=b.Tab_Sim(nTerm,tab_frek,nDok)
 
 #mereturn indeks dari pengurutan tabel similarity
@@ -49,11 +53,11 @@ for i in range(nDok):
     idx = Index_SortedSim[i]
     Tab_countKata[i]=len(a.d[idx].split())
 
-#Mengurutkan isi judul dokumen sesuai similarity
+#mengurutkan isi judul dokumen sesuai similarity
 Tab_sortedJudul = ['*' for i in range(nDok)]
 for i in range(nDok):
     idx = Index_SortedSim[i]
-    Tab_sortedJudul[i] = a.judul[idx]
+    Tab_sortedJudul[i] = judul[idx]
 
 #mendapatkan kalimat pertama dari dokumen
 Tab_FirstSent = ['*' for i in range (nDok)]
@@ -69,7 +73,14 @@ for i in range(nDok):
     print(Tab_FirstSent[i])
     print(" ")
 
-#menampilkan tabel frekuensi mentah
-print(tab_frek)
-
-
+#menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
+term_frek = [['*' for j in range(nDok+2)] for i in range(nTerm+1)]
+term_frek[0][0] = 'Term'
+term_frek[0][1] = 'Query'
+for i in range (nDok):
+    term_frek[0][i+2]=judul[i]
+for i in range (nTerm):
+    term_frek[i+1][0]=terms[i]
+for i in range(nTerm):
+    for j in range(nDok+1):
+        term_frek[i+1][j+1]=str(tab_frek[i][j])

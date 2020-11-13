@@ -1,9 +1,7 @@
-import Input_File as a
-
 def Tab_Sim(nTerm,tab_frek,nDok):
     #mengembalikan array yang berisi nilai similiarity dokumen i dengan query
     sim = [0 for i in range(nDok)]
-    for i in range(a.nDok):
+    for i in range(nDok):
         if (norm(i+1,nTerm,tab_frek)>0):
             sim[i] = (kalidot(i+1,nTerm,tab_frek)/(norm(0,nTerm,tab_frek)*norm(i+1,nTerm,tab_frek)))
     return(sim)
