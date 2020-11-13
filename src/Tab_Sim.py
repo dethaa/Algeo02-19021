@@ -1,4 +1,4 @@
-def Tab_Sim(nTerm,tab_frek,nDok):
+def tab_sim(nTerm,tab_frek,nDok):
     #mengembalikan array yang berisi nilai similiarity dokumen i dengan query
     sim = [0 for i in range(nDok)]
     for i in range(nDok):

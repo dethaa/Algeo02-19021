@@ -25,9 +25,10 @@ clean[0] = stemmer.stem(stop)
 
 #memasukkan kata unik pada query ke dalam array terms
 terms = list(set(clean[0].split()))
+#menyimpan banyaknya jumlah term ke dalam nTerm
 nTerm = len(terms)
 
-#membuat tabel frekuensi kemunculan kata pada dokumen dan query yang sesuai dengan terms
+#membuat tabel frekuensi kemunculan kata pada dokumen dan query yang sesuai dengan term
 tab_frek = [[0 for j in range(nDok+1)] for i in range(nTerm)]
 for i in range(nDok+1):
 	for j in range(nTerm):
@@ -35,40 +36,40 @@ for i in range(nDok+1):
 			if ((clean[i].split()[k])==terms[j]):
 				tab_frek[j][i]+=1
 
-#menyimpan nilai fungsi Tab_Sim dari Tab_Info.py
-Tab_Sim=b.Tab_Sim(nTerm,tab_frek,nDok)
+#menyimpan nilai fungsi tab_sim dari Tab_Sim.py
+tab_sim=b.tab_sim(nTerm,tab_frek,nDok)
 
 #mereturn indeks dari pengurutan tabel similarity
-P = sorted(range(len(Tab_Sim)),key=lambda x:Tab_Sim[x],reverse=True)
-Index_SortedSim = sorted(range(len(Tab_Sim)),key=lambda x:P[x])
+P = sorted(range(len(tab_sim)),key=lambda x:tab_sim[x],reverse=True)
+Index_SortedSim = sorted(range(len(tab_sim)),key=lambda x:P[x])
 
-#mengurutkan nilai similiarity dengan memasukkan hasil Tab_Sim ke array sementara
-Tab_Sim.sort(reverse = True)
+#mengurutkan nilai similiarity dengan memasukkan hasil tab_sim ke array sementara
+tab_sim.sort(reverse = True)
 
-#memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai similarity
+#memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai urutan similarity
 Tab_countKata = [0 for i in range(nDok)]
 for i in range(nDok):
     idx = Index_SortedSim[i]
     Tab_countKata[i]=len(a.d[idx].split())
 
-#mengurutkan isi judul dokumen sesuai similarity
+#mengurutkan judul dokumen sesuai similarity
 Tab_sortedJudul = ['*' for i in range(nDok)]
 for i in range(nDok):
     idx = Index_SortedSim[i]
     Tab_sortedJudul[i] = judul[idx]
 
-#mendapatkan kalimat pertama dari dokumen
+#mendapatkan kalimat pertama dari dokumen yang sudah terurut
 Tab_FirstSent = ['*' for i in range (nDok)]
 for i in range(nDok):
     idx = Index_SortedSim[i]
     Tab_FirstSent[i] = a.s[idx]
 
-#menyimpan gabungan array judul, Tab_countkata, Tab_Sim,Tab_FirstSent ke dalam array tab_info
+#menyimpan gabungan array judul, Tab_countKata, tab_sim, Tab_FirstSent ke dalam array tab_info
 tab_info = [['*' for j in range(4)] for i in range(nDok)]
 for i in range(nDok):
     tab_info[i][0] = judul[i]
     tab_info[i][1] = Tab_countKata[i]
-    tab_info[i][2] = round(Tab_Sim[i], 2)
+    tab_info[i][2] = round(tab_sim[i], 2)
     tab_info[i][3] = Tab_FirstSent[i]
 
 #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
