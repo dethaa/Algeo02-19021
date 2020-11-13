@@ -37,18 +37,5 @@ for i in range(nDok):
     clean[i+1] = stemmer.stem(stop[i])
 
 #menyimpan kalimat pertama tiap file
-s[0] = d[0].partition('.')[0] + '.'
-s[1] = d[1].partition('.')[0] + '.'
-s[2] = d[2].partition('.')[0] + '.'
-s[3] = d[3].partition('.')[0] + '.'
-s[4] = d[4].partition('.')[0] + '.'
-s[5] = d[5].partition('.')[0] + '.'
-s[6] = d[6].partition('.')[0] + '.'
-s[7] = d[7].partition('.')[0] + '.'
-s[8] = d[8].partition('.')[0] + '.'
-s[9] = d[9].partition('.')[0] + '.'
-s[10] = d[10].partition('.')[0] + '.'
-s[11] = d[11].partition('.')[0] + '.'
-s[12] = d[12].partition('.')[0] + '.'
-s[13] = d[13].partition('.')[0] + '.'
-s[14] = d[14].partition('.')[0] + '.'
+for i in range(nDok):
+	s[i] = d[i].partition('.')[0] + '.'
