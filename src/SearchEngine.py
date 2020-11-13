@@ -2,7 +2,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
 import Input_File as a
-import Tab_Info as b
+import Tab_Sim as b
 
 #menyimpan nilai atribut dari Input_File.py
 nDok=a.nDok
@@ -15,8 +15,6 @@ stopword = factory1.create_stop_word_remover()
 #fungsi untuk menyederhanakan kata ke bentuk dasar
 factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
-
-print("################################## MY SIMPLE SEARCH ENGINE ##################################")
 
 #menginput query melalui keyboard
 query = input("Masukkan query: ")
@@ -65,13 +63,13 @@ for i in range(nDok):
     idx = Index_SortedSim[i]
     Tab_FirstSent[i] = a.s[idx]
 
-print("Hasil Pencarian:")
+#menyimpan gabungan array judul, Tab_countkata, Tab_Sim,Tab_FirstSent ke dalam array tab_info
+tab_info = [['*' for j in range(4)] for i in range(nDok)]
 for i in range(nDok):
-    print(i + 1, ". ", Tab_sortedJudul[i])
-    print("Jumlah kata: ", Tab_countKata[i])
-    print("Tingkat Kemiripan: ", round(Tab_Sim[i]*100), "%")
-    print(Tab_FirstSent[i])
-    print(" ")
+    tab_info[i][0] = judul[i]
+    tab_info[i][1] = Tab_countKata[i]
+    tab_info[i][2] = round(Tab_Sim[i], 2)
+    tab_info[i][3] = Tab_FirstSent[i]
 
 #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
 term_frek = [['*' for j in range(nDok+2)] for i in range(nTerm+1)]
