@@ -14,7 +14,7 @@
 Tujuan dari pembuatan proyek ini adalah untuk memenuhi tugas besar II mata kuliah IF2123 Aljabar Linier dan Geometri semester 3 Teknik Informatika Institut Teknologi Bandung tahun ajaran 2020/2021.
 
 ## Teknologi
-Python - version 3.8
+Python - version 3.7+
 
 ## Persiapan program
 1. Download Python versi 3 di https://www.python.org/downloads/ sesuai OS masing-masing. Kami menyarankan untuk mendownload Python versi 3.7 ke atas.
@@ -31,10 +31,15 @@ pip install flask
 pip install beautifulsoup4
 ```
 5. Persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
-6. Buka dan run app.py di compiler seperti Pycharm, Visual Studio Code, Sublime Text, dan sebagainya
+6. Buka kembali Command Prompt
+7. Buka *directory* folder src pada Command Prompt
+8. Jalankan program app.py dengan perintah
+```bash
+python app.py
+```
 7. Tunggu hingga program men-generate link alamat lokal http://**alamat-lokal**/
-8. Salin link tersebut dan buka di browser seperti Firefox atau Google Chrome
-9. Program Search Engine dapat dijalankan
+8. Salin link tersebut secara manual (Jangan menggunakan perintah CTRL-C karena akan mengakhiri program app.py) dan buka di browser seperti Firefox atau Google Chrome
+9. Program *My Simple Search Engine* dapat dijalankan
 
 ## Cara Menggunakan Program
 * **Melakukan pencarian**
