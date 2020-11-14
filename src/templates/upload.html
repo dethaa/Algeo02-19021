@@ -5,19 +5,19 @@
 {% endblock %}
 
 {% block body %}
-<div>
-    <div class ="content" style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; color:white; text-align: center;margin-top: 250px;line-height: 50px;margin-left: 525px;">
+<div style="margin-top: 250px;">
+    <div style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; color:white; text-align: center;line-height: 50px;margin: auto;">
     Pilih dokumen yang akan diungguh
     </div>
     
-    <div class ="content" style="width:500px;height:230px;border:1px solid rgb(255, 255, 255);margin-left: 525px;">
+    <div style="width:500px;height:230px;border:1px solid rgb(255, 255, 255);margin: auto;">
     
         <div style="padding-top: 10px;">
             <p>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
-                <div class="content" style="margin-left: 180px;">
+                <div style="margin: auto;">
                     <strong>{{ message }}</strong>
                 </div>
                 {% endfor %}
