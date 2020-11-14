@@ -5,40 +5,38 @@
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-
-<div class="content" style="max-width:2000px;margin-top:65px">
-    <div class ="content" style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; 
-    color:white; text-align: center;margin-top: 250px;line-height: 50px;margin-left: 525px;">
+<div>
+    <div class ="content" style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; color:white; text-align: center;margin-top: 250px;line-height: 50px;margin-left: 525px;">
     Pilih dokumen yang akan diungguh
     </div>
     
     <div class ="content" style="width:500px;height:230px;border:1px solid rgb(255, 255, 255);margin-left: 525px;">
     
-        <div style="padding-top: 10px ;">
+        <div style="padding-top: 10px;">
             <p>
                 {% with messages = get_flashed_messages() %}
-                  {% if messages %}
-                 {% for message in messages %}
-                   <div class="content" style="margin-left: 180px;">
+                {% if messages %}
+                {% for message in messages %}
+                <div class="content" style="margin-left: 180px;">
                     <strong>{{ message }}</strong>
-                  </div>
-                 {% endfor %}
-                  {% endif %}
+                </div>
+                {% endfor %}
+                {% endif %}
                 {% endwith %}
             </p>
-        <p style="text-align: center;">Dokumen dalam ekstensi txt dan html</p>
         
-        <div style="padding: 10px 15px 9px;">
+        <p style="text-align: center;">Dokumen dalam ekstensi txt dan html </p>
+        
+        <div>
             <form method="post" action="/unggah" enctype="multipart/form-data">
                 <div> 
-                    <div style="margin-bottom: 20px; margin-left: 180px;">
+                    <div style="margin-bottom: 15px; text-align: center;">
                         <div > 
                             <input type="file" name="files[]" multiple="true" autocomplete="off" required> 
                         </div>
                     </div>
-                    <div class="row text-center" style="padding-left: 20px;padding-right: 20px;margin-left: 180px;">
-                        <input type="submit" value="Unggah" class="btn btn-lg btn-block btn-success" style="border-radius: 3    0px;background-color:hover #35832f;">
+                    <div class="row text-center" style="padding-left: 20px;padding-right: 20px;text-align: center;">
+                        <input type="submit" value="Unggah" class="btn btn-lg btn-block btn-success" style="border-radius: 3px;">
                     </div>                                                 
                 </div>
         </div>

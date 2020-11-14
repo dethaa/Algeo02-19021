@@ -5,15 +5,12 @@
 {% endblock %}
 
 {% block body %}
-<div class="content" style="max-width:2000px;margin-top:65px">
+<div>
     <h1 style="text-align: center">Daftar Dokumen</h1>
-    
     {% for file in title  %}
-        <p href="{{ url_for('daftar') }}" class="content" style="margin-left: 13px;padding-top: 10px;">
+        <p>
           {{file}}
         </p>
     {% endfor %}
-    
-   
 </div>
 {% endblock %}

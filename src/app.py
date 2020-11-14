@@ -41,14 +41,14 @@ def index():
 @app.route('/', methods=['POST','GET'])
 def search():
     if request.method == 'POST':
-        user = request.form['query']
+        user = request.form['query']   
+        flash('Hasil Pencarian :') 
     else :
         user = request.args.get('query')
     return redirect(url_for("search_query", query=user))
 
 @app.route('/<query>')
 def search_query(query):
-    flash('Hasil Pencarian :')
     #membersihkan query dan memasukkannya sebagai elemen pertama array clean
     stop = stopword.remove(query)
     clean[0] = stemmer.stem(stop)
@@ -99,7 +99,7 @@ def search_query(query):
     for i in range(nDok):
         tab_info[i][0] = Tab_sortedJudul[i]
         tab_info[i][1] = Tab_countKata[i]
-        tab_info[i][2] = round(tab_sim[i], 2)
+        tab_info[i][2] = round(tab_sim[i], 2)*100
         tab_info[i][3] = Tab_FirstSent[i]
 
     #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
@@ -122,8 +122,7 @@ def perihal():
 
 @app.route("/daftar-dokumen")
 def daftar():
-    judul_bagus = stemmer.stem(a.judul)
-    return render_template("daftar.html", title=judul_bagus)
+    return render_template("daftar.html", title=a.judul)
 
 @app.route("/unggah")
 def upload():

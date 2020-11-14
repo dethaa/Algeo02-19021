@@ -5,32 +5,25 @@
 {% endblock %}
 
 {% block body %}
-<div class="content" style="max-width:2000px;margin-top:65px">
-    <h1 style="text-align: center">My Simple Search Engine</h1>
+<div style="margin-top:65px">
+    <h1>My Simple Search Engine</h1>
 
-    <form action = "/query" method ="GET">
-    <div class="search" style="max-width:800px;margin-top:30px;margin-left:350px;">
+    <form action = "/" method ="POST">
+    <div style="max-width:800px;margin-top:30px;margin-left:350px;padding-bottom: 40px;">
         <input type="text" style="text-align: center" class="w3-input w3-border" placeholder="Masukkan pencarian" name= "query" />
     </div>  
-</form>
-<div class="content" style="padding-top: 10px;">
-  {% with messages = get_flashed_messages() %}
-  <strong>{{ message }}</strong>
+  </form>
+
+  <div style="padding-top: 10px;">
   {% for file in data  %}
-        <a href="{{ url_for('daftar') }}" class="content" style="margin-left: 13px;padding-top: 10px;">
-          {{file[0]}} </a>
-          <p style="margin-left: 13px;padding-top: 10px;">
-            Jumlah Kata : {{file[1]}}
-          </p>
-          <p style="margin-left: 13px;padding-top: 10px;">
-            Tingkat Kemiripan : {{file[2]}}
-          </p>
-          <p style="margin-left: 13px; padding-bottom:10px;">
-            {{file[3]}}
-          </p>
-          
+        <a href="{{ url_for('daftar') }}" style="margin-left: 15px">
+          {{file[0]}} 
+        </a>
+        <p> Jumlah Kata : {{file[1]}} </p>
+        <p> Tingkat Kemiripan : {{file[2]}} % </p>
+        <p style="padding-bottom: 20px;"> {{file[3]}} </p>
   </div> 
-    {% endfor %}
-    {% endwith %}
+  {% endfor %}
+
 </div>
 {% endblock %}
