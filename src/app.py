@@ -18,6 +18,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'html'])
 
 import Input_File as a
 import Tab_Sim as b
+import Web_Scraping as c
 
 #menyimpan nilai atribut dari Input_File.py
 nDok=a.nDok
@@ -122,6 +123,18 @@ def search_query(query):
 def perihal():
     return render_template('perihal.html')
 
+@app.route('/pranala')
+def pranala():
+    return render_template('pranala.html')
+
+@app.route('/pranala', methods=['POST','GET'])
+def ambil_pranala():
+    if request.method == 'POST':
+        link = request.form['url']
+        flash('File berhasil diunduh')
+    c.web_scrap(link)
+    return redirect('/pranala')
+
 @app.route("/daftar-dokumen")
 def daftar():
     JudulFix = ['*' for i in range (nDok)]
@@ -153,7 +166,6 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File berhasil diunggah')
-    import Input_File as a
     return redirect('/unggah')
 
 if __name__ == "__main__":

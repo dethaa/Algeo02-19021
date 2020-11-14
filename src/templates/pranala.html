@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Unggah Dokumen</title>
+{% endblock %}
+
+{% block body %}
+<div style="margin-top: 300px;">
+    <div style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; color:white; text-align: center;line-height: 50px;margin: auto;">
+    Masukkan Pranala
+    </div>
+    
+    <div style="width:500px;height:230px;border:1px solid rgb(255, 255, 255);margin: auto;">
+    
+        <div style="padding-top: 10px;">
+            <p>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div style="margin: auto; text-align: center;">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </p>
+        
+        <div>
+            <form method="post" action="/pranala">
+                <div style="max-width:600px;padding-top: 10px;margin: auto;">
+                        <input type="text" style="text-align: center" class="w3-input w3-border" placeholder="Masukkan url" name= "url" />
+                </div>  
+            </form>
+            
+            <p style="text-align: center;padding-top: 10px;">atau <a href="{{ url_for('upload') }}">unggah file</a> </p>
+                
+        </div>
+</div>
+{% endblock %}
