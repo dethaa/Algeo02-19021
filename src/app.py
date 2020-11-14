@@ -69,12 +69,11 @@ def search_query(query):
     #menyimpan nilai fungsi tab_sim dari Tab_Sim.py
     tab_sim=b.tab_sim(nTerm,tab_frek,nDok)
 
-    #mereturn indeks dari pengurutan tabel similarity
-    P = sorted(range(len(tab_sim)),key=lambda x:tab_sim[x],reverse=True)
-    Index_SortedSim = sorted(range(len(tab_sim)),key=lambda x:P[x])
+    #menyimpan indeks dari pengurutan tabel similarity
+    Index_SortedSim = sorted(range(len(tab_sim)),key=lambda x:tab_sim[x],reverse=True)
 
-    #mengurutkan nilai similiarity dengan memasukkan hasil tab_sim ke array sementara
-    tab_sim.sort(reverse = True)
+    # mengurutkan nilai similiarity dengan memasukkan hasil tab_sim ke array sementara
+    tab_sim.sort(reverse=True)
 
     #memasukkan jumlah kata tiap dokumen ke dalam array Tab_countKata sesuai urutan similarity
     Tab_countKata = [0 for i in range(nDok)]
