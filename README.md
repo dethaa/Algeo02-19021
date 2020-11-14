@@ -18,14 +18,20 @@ Python - version 3.8
 ## Persiapan program
 1. Download Python versi 3 di https://www.python.org/downloads/ sesuai OS masing-masing. Kami menyarankan untuk mendownload Python versi 3.7 ke atas.
 2. Instal Python (Centang pilihan "Add Python 3.X to PATH" agar packages Python dapat diinstal melalui Command Prompt)
-3. Klik kanan Command Prompt lalu klik "open as administrator"
-4. Instal Python Packages berikut dengan mengetik "pip install <packages-yang-harus-diinstal>"
->4.1 pip install sastrawi
->4.2 pip install flask
->4.3 pip install beautifulsoup4
+3. Klik kanan Command Prompt lalu klik "Open as administrator"
+4. Instal Python Packages berikut dengan mengetik "pip install **packages-yang-harus-diinstal**"
+```bash
+pip install sastrawi
+```
+```bash
+pip install flask
+```
+```bash
+pip install beautifulsoup4
+```
 5. Persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
 6. Buka dan run app.py di compiler seperti Pycharm, Visual Studio Code, Sublime Text, dan sebagainya
-7. Tunggu hingga program men-generate link alamat lokal http://<alamat-lokal>/
+7. Tunggu hingga program men-generate link alamat lokal http://**alamat-lokal**/
 8. Salin link tersebut dan buka di browser seperti Firefox atau Google Chrome
 9. Program Search Engine dapat dijalankan
 
