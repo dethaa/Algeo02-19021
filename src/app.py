@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, send_from_directory
 from werkzeug.utils import secure_filename
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
@@ -130,6 +130,11 @@ def daftar():
         JudulFix[i]=judul[i].replace('_',' ')
 
     return render_template("daftar.html", title=JudulFix)
+
+@app.route("/test/<file>")
+def buka_file(file):
+    JudulFix=file.replace('%20',' ')
+    return send_from_directory('../test/',file)
 
 @app.route("/unggah")
 def upload():
