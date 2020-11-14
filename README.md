@@ -36,20 +36,20 @@ pip install beautifulsoup4
 8. Salin link tersebut dan buka di browser seperti Firefox atau Google Chrome
 9. Program Search Engine dapat dijalankan
 
-## Cara Menggunakan Program (How to Use)
+## Cara Menggunakan Program
 * **Melakukan pencarian**
 1. Klik tab *home* 
 2. Masukkan *query*
 3. Tekan enter
 * **Melihat Daftar Dokumen**
-Klik tab daftar dokumen
+`<addr>`Klik tab daftar dokumen
 * **Menambah Dokumen Uji**
 1. Klik tab unggah
 2. Klik *choose files*
 3. Pilih file .*txt* atau .*html* yang ingin ditambahkan
 4. Klik unggah
 * **Melihat Informasi General tentang *Website* My Simple Search Engine**
-Klik tab perihal
+`<addr>`Klik tab perihal
 
 ## Status
 Selesai
