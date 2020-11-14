@@ -2,6 +2,7 @@
 
 {% block head %}
 <title>My Simple Search Engine</title>
+<link rel="stylesheet" href="/static/style.css" /> 
 {% endblock %}
 
 {% block body %}
@@ -24,6 +25,20 @@
         <p style="padding-bottom: 20px;"> {{file[3]}} </p>
   </div> 
   {% endfor %}
+
+  <p style="padding-top: 20px;font-size: 120%;"> <b>Tabel Frekuensi</b> </p>
+  <table class="table" style="padding: 10px;">
+    {% for row in tab %}
+    <tr class="table_row">  
+      {% for cell in row %}
+      <td class ="table_cell" style="text-align: center;">{{cell}}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    <tr>
+
+    </tr>
+  </table>
 
 </div>
 {% endblock %}

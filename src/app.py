@@ -6,9 +6,6 @@ import os
 
 import urllib.request
 
-import Input_File as a
-import Tab_Sim as b
-
 app = Flask(__name__)
 
 UPLOAD_FOLDER = '../test/'
@@ -18,11 +15,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['txt', 'html'])
-
-#menyimpan nilai atribut dari Input_File.py
-nDok=a.nDok
-clean=a.clean
-judul=a.judul
 
 #fungsi untuk menghapus stopword dari dokumen
 factory1 = StopWordRemoverFactory()
@@ -49,6 +41,14 @@ def search():
 
 @app.route('/<query>')
 def search_query(query):
+    import Input_File as a
+    import Tab_Sim as b
+
+    #menyimpan nilai atribut dari Input_File.py
+    nDok=a.nDok
+    clean=a.clean
+    judul=a.judul
+
     #membersihkan query dan memasukkannya sebagai elemen pertama array clean
     stop = stopword.remove(query)
     clean[0] = stemmer.stem(stop)
@@ -84,9 +84,11 @@ def search_query(query):
 
     #mengurutkan judul dokumen sesuai similarity
     Tab_sortedJudul = ['*' for i in range(nDok)]
+    JudulFix = ['*' for i in range (nDok)]
     for i in range(nDok):
         idx = Index_SortedSim[i]
         Tab_sortedJudul[i] = judul[idx]
+        JudulFix[i]=Tab_sortedJudul[i].replace('_',' ')
 
     #mendapatkan kalimat pertama dari dokumen yang sudah terurut
     Tab_FirstSent = ['*' for i in range (nDok)]
@@ -97,9 +99,9 @@ def search_query(query):
     #menyimpan gabungan array judul, Tab_countKata, tab_sim, Tab_FirstSent ke dalam array tab_info
     tab_info = [['*' for j in range(4)] for i in range(nDok)]
     for i in range(nDok):
-        tab_info[i][0] = Tab_sortedJudul[i]
+        tab_info[i][0] = JudulFix[i]
         tab_info[i][1] = Tab_countKata[i]
-        tab_info[i][2] = round(tab_sim[i], 2)*100
+        tab_info[i][2] = format(tab_sim[i]*100, '.2f')
         tab_info[i][3] = Tab_FirstSent[i]
 
     #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
@@ -114,7 +116,7 @@ def search_query(query):
         for j in range(nDok+1):
             term_frek[i+1][j+1]=str(tab_frek[i][j])
 
-    return render_template('index.html',data=tab_info)
+    return render_template('index.html',data=tab_info,tab=term_frek)
 
 @app.route('/perihal')
 def perihal():
@@ -122,7 +124,19 @@ def perihal():
 
 @app.route("/daftar-dokumen")
 def daftar():
-    return render_template("daftar.html", title=a.judul)
+    import Input_File as a
+
+    #menyimpan nilai atribut dari Input_File.py
+    nDok=a.nDok
+    clean=a.clean
+    judul=a.judul
+
+    JudulFix = ['*' for i in range (nDok)]
+
+    for i in range (nDok) :
+        JudulFix[i]=judul[i].replace('_',' ')
+
+    return render_template("daftar.html", title=JudulFix)
 
 @app.route("/unggah")
 def upload():
@@ -141,6 +155,7 @@ def upload_file():
                 filename = secure_filename(file.filename)
                 file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         flash('File berhasil diunggah')
+    import Input_File as a
     return redirect('/unggah')
 
 if __name__ == "__main__":
