@@ -121,9 +121,9 @@ def perihal():
     return render_template('perihal.html')
 
 @app.route("/daftar-dokumen")
-@app.route("/daftar-dokumen")
 def daftar():
-    return render_template("daftar.html", title=a.judul)
+    judul_bagus = stemmer.stem(a.judul)
+    return render_template("daftar.html", title=judul_bagus)
 
 @app.route("/unggah")
 def upload():
