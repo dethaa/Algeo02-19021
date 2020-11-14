@@ -18,8 +18,8 @@ Python - version 3.8
 
 ## Persiapan program
 1. Download Python versi 3 di https://www.python.org/downloads/ sesuai OS masing-masing. Kami menyarankan untuk mendownload Python versi 3.7 ke atas.
-2. Instal Python (Centang pilihan "Add Python 3.X to PATH" agar packages Python dapat diinstal melalui Command Prompt)
-3. Klik kanan Command Prompt lalu klik "Open as administrator"
+2. Instal Python (Centang pilihan "*Add Python 3.X to PATH*" agar packages Python dapat diinstal melalui Command Prompt)
+3. Klik kanan Command Prompt lalu klik "*Open as Administrator*"
 4. Instal Python Packages berikut dengan mengetik "pip install **packages-yang-harus-diinstal**"
 ```bash
 pip install sastrawi
@@ -44,7 +44,7 @@ pip install beautifulsoup4
 * **Melihat Daftar Dokumen**
 
 
-Klik tab daftar dokumen
+   Klik tab daftar dokumen
 * **Menambah Dokumen Uji**
 1. Klik tab unggah
 2. Klik *choose files*
@@ -53,7 +53,7 @@ Klik tab daftar dokumen
 * **Melihat Informasi General tentang *Website* My Simple Search Engine**
 
 
-Klik tab perihal
+   Klik tab perihal
 
 ## Status
 Selesai
