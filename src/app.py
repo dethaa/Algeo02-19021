@@ -34,7 +34,6 @@ def index():
 def search():
     if request.method == 'POST':
         user = request.form['query']   
-        flash('Hasil Pencarian :') 
     else :
         user = request.args.get('query')
     return redirect(url_for("search_query", query=user))
