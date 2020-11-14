@@ -7,7 +7,7 @@
 {% block body %}
 <div style="margin-top: 250px;">
     <div style="width:500px;height:50px;border:1px solid #000;background-color: #000;border-radius: 10px; color:white; text-align: center;line-height: 50px;margin: auto;">
-    Pilih dokumen yang akan diungguh
+    Pilih dokumen yang akan diunggah
     </div>
     
     <div style="width:500px;height:230px;border:1px solid rgb(255, 255, 255);margin: auto;">
@@ -17,7 +17,7 @@
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
                 {% for message in messages %}
-                <div style="margin: auto;">
+                <div style="margin: auto; text-align: center;">
                     <strong>{{ message }}</strong>
                 </div>
                 {% endfor %}

@@ -16,6 +16,14 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
  
 ALLOWED_EXTENSIONS = set(['txt', 'html'])
 
+import Input_File as a
+import Tab_Sim as b
+
+#menyimpan nilai atribut dari Input_File.py
+nDok=a.nDok
+clean=a.clean
+judul=a.judul
+
 #fungsi untuk menghapus stopword dari dokumen
 factory1 = StopWordRemoverFactory()
 stopword = factory1.create_stop_word_remover()
@@ -40,14 +48,6 @@ def search():
 
 @app.route('/<query>')
 def search_query(query):
-    import Input_File as a
-    import Tab_Sim as b
-
-    #menyimpan nilai atribut dari Input_File.py
-    nDok=a.nDok
-    clean=a.clean
-    judul=a.judul
-
     #membersihkan query dan memasukkannya sebagai elemen pertama array clean
     stop = stopword.remove(query)
     clean[0] = stemmer.stem(stop)
@@ -104,10 +104,12 @@ def search_query(query):
 
     #menyimpan gabungan array terms dan tabel tab_frek ke dalam tabel term_frek
     term_frek = [['*' for j in range(nDok+2)] for i in range(nTerm+1)]
+    JudulFix = ['*' for i in range (nDok)]
     term_frek[0][0] = 'Term'
     term_frek[0][1] = 'Query'
     for i in range (nDok):
-        term_frek[0][i+2]=judul[i]
+        JudulFix[i]=judul[i].replace('_',' ')
+        term_frek[0][i+2]=JudulFix[i]
     for i in range (nTerm):
         term_frek[i+1][0]=terms[i]
     for i in range(nTerm):
@@ -122,13 +124,6 @@ def perihal():
 
 @app.route("/daftar-dokumen")
 def daftar():
-    import Input_File as a
-
-    #menyimpan nilai atribut dari Input_File.py
-    nDok=a.nDok
-    clean=a.clean
-    judul=a.judul
-
     JudulFix = ['*' for i in range (nDok)]
 
     for i in range (nDok) :
