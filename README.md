@@ -41,14 +41,18 @@ pip install beautifulsoup4
 1. Klik tab *home* 
 2. Masukkan *query*
 3. Tekan enter
-* **Melihat Daftar Dokumen**__
+* **Melihat Daftar Dokumen**
+
+
 Klik tab daftar dokumen
 * **Menambah Dokumen Uji**
 1. Klik tab unggah
 2. Klik *choose files*
 3. Pilih file .*txt* atau .*html* yang ingin ditambahkan
 4. Klik unggah
-* **Melihat Informasi General tentang *Website* My Simple Search Engine**__
+* **Melihat Informasi General tentang *Website* My Simple Search Engine**
+
+
 Klik tab perihal
 
 ## Status
