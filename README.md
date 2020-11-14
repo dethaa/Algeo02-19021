@@ -20,9 +20,9 @@ Python - version 3.8
 2. Instal Python (Centang pilihan "Add Python 3.X to PATH" agar packages Python dapat diinstal melalui Command Prompt)
 3. Klik kanan Command Prompt lalu klik "open as administrator"
 4. Instal Python Packages berikut dengan mengetik "pip install <packages-yang-harus-diinstal>"
-	4.1 pip install sastrawi
-	4.2 pip install flask
-	4.3 pip install beautifulsoup4
+>4.1 pip install sastrawi
+>4.2 pip install flask
+>4.3 pip install beautifulsoup4
 5. Persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
 6. Buka dan run app.py di compiler seperti Pycharm, Visual Studio Code, Sublime Text, dan sebagainya
 7. Tunggu hingga program men-generate link alamat lokal http://<alamat-lokal>/
