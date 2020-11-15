@@ -38,7 +38,7 @@ git clone "https://github.com/dethaa/Algeo02-19021.git"
 ``` 
 8. Buka folder *repository* tersebut dan persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
 9. Buka kembali Command Prompt
-10. Buka *directory* folder src pada Command Prompt dengan perintah **cd test/**
+10. Buka *directory* folder src pada Command Prompt dengan perintah **cd src/**
 11. Jalankan program app.py dengan perintah
 ```bash
 python app.py
