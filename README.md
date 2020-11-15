@@ -1,5 +1,5 @@
 # Algeo02-19021
-> Sebuah website lokal untuk mesin pencarian 
+> Sebuah website lokal bernama "My Simple Search Engine" sebagai mesin pencarian 
 
 ## Daftar Isi
 * [Info General](#info-general)
@@ -46,16 +46,21 @@ python app.py
 1. Klik tab *home* 
 2. Masukkan *query*
 3. Tekan enter
-* **Melihat Daftar Dokumen**
+* **Melihat daftar dokumen**
 
 
    Klik tab daftar dokumen
-* **Menambah Dokumen Uji**
+* **Menambah dokumen uji dari perangkat**
 1. Klik tab unggah
 2. Klik *choose files*
 3. Pilih file .*txt* atau .*html* yang ingin ditambahkan
 4. Klik unggah
-* **Melihat Informasi General tentang *Website* My Simple Search Engine**
+* **Menambah dokumen uji dengan *web scraping***
+1. Klik tab unggah
+2. Klik *internet (dengan url)*
+3. Masukkan url
+4. Tekan enter
+* **Melihat informasi general tentang *website* My Simple Search Engine**
 
 
    Klik tab perihal
