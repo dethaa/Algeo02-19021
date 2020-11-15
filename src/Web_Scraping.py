@@ -14,13 +14,17 @@ def web_scrap(input):
 	isiDokumen = ['*' for i in range(nLink)]
 	judulWeb = ['*' for i in range(nLink)]
 	slash = chr(92)
+	old = [slash,'/',':','*','?','"','<','>','|'] #inisialisasi simbol-simbol yang tidak dapat menjadi bagian nama file
+	new = ['','','','','','','','','']
 	for i in range(nLink):
 		url = Request(link[i], headers=HEADERS)
 		page = urlopen(url)
 		html = page.read().decode("utf-8")
 		soup = BeautifulSoup(html, "html.parser")
-		judulTemp = soup.title.string
-		judulWeb[i] = judulTemp.partition('|')[0] or judulTemp.partition('<')[0] or judulTemp.partition('>')[0] or judulTemp.partition('"')[0] or judulTemp.partition('?')[0] or judulTemp.partition('*')[0] or judulTemp.partition(':')[0] or judulTemp.partition('/')[0] or judulTemp.partition(slash)[0]
+		tmp = soup.title.string
+		for k in range(len(old)):
+			tmp = tmp.replace(old[k],new[k]) #mengganti simbol-simbol tersebut dengan spasi kosong pada array new
+		judulWeb[i] =  tmp
 		dokumen = soup.get_text()
 		isiDokumen[i] = dokumen.encode('utf-8')
 
