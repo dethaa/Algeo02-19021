@@ -179,4 +179,5 @@ def upload_file():
 
 #fungsi main yang akan menjalankan program secara keseluruhan
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.config['TEMPLATES_AUTO_RELOAD'] = True
+    app.run(debug=True, extra_files=['../test',])
