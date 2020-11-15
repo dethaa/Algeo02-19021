@@ -3,22 +3,21 @@ from werkzeug.utils import secure_filename
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 import os
-
 import urllib.request
-
-app = Flask(__name__)
-
-UPLOAD_FOLDER = '../test/'
- 
-app.secret_key = "Cairocoders-Ednalan"
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
- 
-ALLOWED_EXTENSIONS = set(['txt', 'html'])
-
 import Input_File as a
 import Tab_Sim as b
 import Web_Scraping as c
+
+app = Flask(__name__)
+
+#directory penyimpanan file yang akan diupload
+UPLOAD_FOLDER = '../test/'
+ 
+#pengaturan untuk file upload yang akan diterima
+app.secret_key = "Cairocoders-Ednalan"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
+ALLOWED_EXTENSIONS = set(['txt', 'html'])
 
 #menyimpan nilai atribut dari Input_File.py
 nDok=a.nDok
@@ -32,13 +31,16 @@ stopword = factory1.create_stop_word_remover()
 factory2 = StemmerFactory()
 stemmer = factory2.create_stemmer()
 
+#fungsi untuk memastikan file yang diupload sudah sesuai aturan (ekstensi dan ukuran)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+#fungsi untuk menampilkan utama dari search engine
 @app.route('/')
 def index():
     return render_template('index.html')
 
+#fungsi yang akan menerima masukan query yang akan dicari dan langsung menuju def search_query
 @app.route('/', methods=['POST','GET'])
 def search():
     if request.method == 'POST':
@@ -47,6 +49,7 @@ def search():
         user = request.args.get('query')
     return redirect(url_for("search_query", query=user))
 
+#fungsi yang memproses masukan query dan mengurutkan dokumen yang relevan
 @app.route('/<query>')
 def search_query(query):
     #membersihkan query dan memasukkannya sebagai elemen pertama array clean
@@ -119,14 +122,17 @@ def search_query(query):
 
     return render_template('index.html',data=tab_info,tab=term_frek)
 
+#fungsi yang akan menampilkan informasi tentang program dan pembuatnya dalam tab perihal
 @app.route('/perihal')
 def perihal():
     return render_template('perihal.html')
 
+#fungsi yang akan menampilkan halaman upload menggunakan url dari internet yang akan diunduh ke dalam folder test 
 @app.route('/pranala')
 def pranala():
     return render_template('pranala.html')
 
+#fungsi yang menerima dan memroses url yang dimasukkan pengguna dan meletakkannya dalam folder test
 @app.route('/pranala', methods=['POST','GET'])
 def ambil_pranala():
     if request.method == 'POST':
@@ -135,6 +141,7 @@ def ambil_pranala():
     c.web_scrap(link)
     return redirect('/pranala')
 
+#fungsi yang akan menampilkan daftar dokumen yang tersedia pada folder test
 @app.route("/daftar-dokumen")
 def daftar():
     JudulFix = ['*' for i in range (nDok)]
@@ -144,19 +151,21 @@ def daftar():
 
     return render_template("daftar.html", title=JudulFix)
 
+#fungsi untuk menuju hyperlink dari judul dokumen yang ada pada hasil pencarian dan membuka dokumen yang dituju
 @app.route("/test/<file>")
 def buka_file(file):
-    JudulFix=file.replace('%20',' ')
     return send_from_directory('../test/',file)
 
+#fungsi untuk menampilkan halaman untuk mengunggah file dari dalam komputer sendiri
 @app.route("/unggah")
 def upload():
     return render_template("upload.html")
 
+#fungsi yang menerima file yang diunggah dan menampilkan keberhasilan pengunggahan
 @app.route('/unggah', methods=['POST'])
 def upload_file():
     if request.method == 'POST':
-    # check if the post request has the files part
+    #mengecek apakah files yang dimaksud tersedia
         if 'files[]' not in request.files:
             flash('No file part')
             return redirect(request.url)
@@ -168,5 +177,6 @@ def upload_file():
         flash('File berhasil diunggah')
     return redirect('/unggah')
 
+#fungsi main yang akan menjalankan program secara keseluruhan
 if __name__ == "__main__":
     app.run(debug=True)
