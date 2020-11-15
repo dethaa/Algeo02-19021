@@ -31,7 +31,7 @@ pip install flask
 pip install beautifulsoup4
 ```
 5. Salin link https://github.com/dethaa/Algeo02-19021.git
-6. Pilih direktori yang ingin Anda jadikan sebagai tempat programnya dengan perintah **cd**  *nama-direktori-anda***/**
+6. Pilih direktori yang ingin Anda jadikan sebagai tempat programnya dengan perintah **cd**  *nama-direktori-anda*/
 7. Klon link *git repository* dengan perintah berikut
 ```bash
 git clone "https://github.com/dethaa/Algeo02-19021.git"
