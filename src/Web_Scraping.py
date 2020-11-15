@@ -30,7 +30,7 @@ def web_scrap(input):
 
 	#memasukkan teks pada array isiDokumen ke dalam folder test
 	for i in range(nLink):
-		fname = "../test/link " + judulWeb[i] + ".txt"
+		fname = "../test/[web] " + judulWeb[i] + ".txt"
 		with open(fname, 'wb') as text_file:
 			text_file.write(isiDokumen[i])
 
