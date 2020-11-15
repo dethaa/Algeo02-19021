@@ -7,43 +7,45 @@
 {% block body %}
 <div>
   <h1>Perihal</h1>
-    <div>
+  <div>
       <h2><b>Search Engine</b></h2>
       <p> Menuju era 4.0, penggunaan search engine sudah menjadi keseharian masyarakat dalam mencari informasi-informasi yang ada di internet. Search Engine atau mesin pencari merupakan program pencarian informasi pada basis data berdasarkan kata kunci yang dimasukkan oleh pengguna.  Search Engine mengaplikasikan ruang vektor dalam algoritmanya. Penentuan dokumen yang relevan dengan query masukan pengguna didapat dengan rumus pengukuran kesamaan yang disebut cosine similarity. Hasil cosine similarity didapat dengan melakukan perkalian titik (dot product) dari vektor query dan dokumen dan dibagi dengan perkalian antara norma vektor query dan dokumen,lalu dirangkingkan dari nilai terbesar ke nilai terkecil. </p>
       <p style="text-align: center"><image src=static/picture/CosineSimilarity.jpg alt="Cosine Similarity"></image></p>
       <p> Beberapa contoh search engine : </p>
       <p style="text-align: center;">
-        <image src=static/picture/yahoo.png alt="Yahoo" width = "200"></image>
-        <image src=static/picture/bing.jpg alt="Bing" width = "200" style = "padding-left: 20px"></image>
-        <image src=static/picture/google.jpg alt="Google" width = "200" style = "padding-left: 10px"></image>
+          <image src=static/picture/yahoo.png alt="Yahoo" width="200"></image>
+          <image src=static/picture/bing.jpg alt="Bing" width="200" style="padding-left: 20px"></image>
+          <image src=static/picture/google.jpg alt="Google" width="200" style="padding-left: 10px"></image>
       </p>
       <h2><b>Cara Penggunaan</b></h2>
       <p> a. Melakukan pencarian </p>
-      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('index') }}"><b>home</b></a> → masukkan query → tekan enter </p> 
+      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('index') }}"><b>home</b></a> → masukkan query → tekan enter </p>
       <p> b. Melihat daftar dokumen </p>
-      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('daftar') }}"><b>daftar dokumen</b></a> </p> 
-      <p> c. Menambah dokumen uji </p>
-      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('upload') }}"><b>unggah</b></a> → klik choose files → pilih file txt atau html yang ingin ditambahkan → klik unggah </p> 
-      <p> d. Melihat informasi general tentang website My Simple Search Engine </p>
+      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('daftar') }}"><b>daftar dokumen</b></a> </p>
+      <p> c. Menambah dokumen uji dari perangkat </p>
+      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('upload') }}"><b>unggah</b></a> → klik choose files → pilih file txt atau html yang ingin ditambahkan → klik unggah </p>
+      <p> d. Menambah dokumen uji dengan web-scraping </p>
+      <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('upload') }}"><b>unggah</b></a>  → klik <a href="{{ url_for('pranala') }}"><b>internet (dengan url)</b></a> → masukkan url → tekan enter </p>
+      <p> e. Melihat informasi general tentang website My Simple Search Engine </p>
       <p style="padding-left: 50px;"> klik tab <a href="{{ url_for('perihal') }}"><b>perihal</b></a> </p>
-      <h2><b>Tentang Kami</b></h2>    
+      <h2><b>Tentang Kami</b></h2>
       <p> Halo, perkenalkan kami mahasiswa Teknik Informatika 2019 yang sedang menjalani semester 3 yang bahagia di Institut Teknologi Bandung. Doakan kami lulus ya‼️ :) </p>
       <div>
-       <p style="text-align: center;">
-         <image src=static/picture/Arjuna.jpg alt="Arjuna" width = "200"></image>
-          <figcaption style="text-align: center;">Arjuna Marcelino - 13519021</figcaption>
-        </p>
-        <p style="text-align: center;">
-          <image src=static/picture/Sharon.jpg alt="Sharon" width = "200"></image>
-          <figcaption style="text-align: center;">Sharon Bernadetha Marbun - 13519092</figcaption>
-        </p>
-        <p style="text-align: center;">
-          <image src=static/picture/Epata.png alt="Epata" width = "200" ></image>
-          <figcaption style="text-align: center;">Epata Tuah - 13519120</figcaption>
-        </p>
+          <p style="text-align: center;">
+              <image src=static/picture/Arjuna.jpg alt="Arjuna" width="200"></image>
+              <figcaption style="text-align: center;">Arjuna Marcelino - 13519021</figcaption>
+          </p>
+          <p style="text-align: center;">
+              <image src=static/picture/Sharon.jpg alt="Sharon" width="200"></image>
+              <figcaption style="text-align: center;">Sharon Bernadetha Marbun - 13519092</figcaption>
+          </p>
+          <p style="text-align: center;">
+              <image src=static/picture/Epata.png alt="Epata" width="200"></image>
+              <figcaption style="text-align: center;">Epata Tuah - 13519120</figcaption>
+          </p>
       </div>
-      (foto) Nama - NIM.   
-    </div>
+      (foto) Nama - NIM.
+  </div>
 </div>
 
 {% endblock %}
