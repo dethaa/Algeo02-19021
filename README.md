@@ -30,16 +30,22 @@ pip install flask
 ```bash
 pip install beautifulsoup4
 ```
-5. Persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
-6. Buka kembali Command Prompt
-7. Buka *directory* folder src pada Command Prompt
-8. Jalankan program app.py dengan perintah
+5. Salin link https://github.com/dethaa/Algeo02-19021.git
+6. Pilih direktori yang ingin Anda jadikan sebagai tempat programnya dengan perintah **cd**  *nama-direktori-anda***/**
+7. Klon link *git repository* dengan perintah berikut
+```bash
+git clone "https://github.com/dethaa/Algeo02-19021.git"
+``` 
+8. Buka folder *repository* tersebut dan persiapkan dokumen-dokumen yang menjadi data base search engine di folder test
+9. Buka kembali Command Prompt
+10. Buka *directory* folder src pada Command Prompt dengan perintah **cd test/**
+11. Jalankan program app.py dengan perintah
 ```bash
 python app.py
 ```
-7. Tunggu hingga program men-generate link alamat lokal http://**alamat-lokal**/
-8. Salin link tersebut secara manual (Jangan menggunakan perintah CTRL-C karena akan mengakhiri program app.py) dan buka di browser seperti Firefox atau Google Chrome
-9. Program *My Simple Search Engine* dapat dijalankan
+12. Tunggu hingga program men-generate link alamat lokal http://**alamat-lokal**/
+13. Salin link tersebut secara manual (Jangan menggunakan perintah CTRL-C karena akan mengakhiri program app.py) dan buka di browser seperti Firefox atau Google Chrome
+14. Program *My Simple Search Engine* dapat dijalankan
 
 ## Cara Menggunakan Program
 * **Melakukan pencarian**
