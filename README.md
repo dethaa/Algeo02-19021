@@ -61,11 +61,13 @@ python app.py
 2. Klik *choose files*
 3. Pilih file .*txt* atau .*html* yang ingin ditambahkan
 4. Klik unggah
+Tunggu hingga keluar alamat lokal kembali di Command Prompt-nya, program akan *restart* karena ada perubahan pada direktori test
 * **Menambah dokumen uji dengan *web scraping***
 1. Klik tab unggah
 2. Klik *internet (dengan url)*
 3. Masukkan url
 4. Tekan enter
+Tunggu hingga keluar alamat lokal kembali di Command Prompt-nya, program akan *restart* karena ada perubahan pada direktori test
 * **Melihat informasi general tentang *website* My Simple Search Engine**
 
 
